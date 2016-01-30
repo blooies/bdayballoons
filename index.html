@@ -1,0 +1,65 @@
+<DOCTYPE! html>
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script type="text/javascript" src='balloon.js'></script>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
+        <link href="http://fonts.googleapis.com/css?family=Quicksand:300,400,700" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <div class='btns'>
+            <button class='color btn'>color</button>
+            <button class='spazz btn'>spazz out</button>
+            <button class='derp btn'>bloop</button>
+        </div>
+        <div class='card'>
+            Happy Birthday!
+        </div>
+        <div class='container'>
+        </div>
+    </body>
+</html>
+
+<script>
+    var spazz;
+    var happybday = new HappyBirthday('mickey');
+    $('.color').on('click', function() {
+        clearInterval(spazz);
+        spazz = null;
+        happybday.pickColorTheme();
+        happybday.colorBalloons();
+    })
+
+    $('.spazz').on('click', function() {
+        if (!spazz) {
+            spazz = setInterval(function() {
+                happybday.pickColorTheme();
+                happybday.colorBalloons();
+            }, 500)
+        }
+    })
+
+    $('.derp').on('click', function() {
+        happybday.derpFace();
+    })
+
+    $('.holder').on('click', function() {
+        $(this).removeClass('float-down');
+        var el = $(this)[0];
+        var top = getComputedStyle(el).top;
+        if (top == 'auto') {
+            $(this).css('top', '-85px');
+        } else {
+            top = parseInt(top);
+            top -= 50;
+            $(this).css('top', top);
+        }
+        var self = this;
+        setTimeout(function() {
+            $(self).addClass('float-down');
+        }, 2000);
+    })
+</script>
