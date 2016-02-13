@@ -2,9 +2,8 @@ var HappyBirthday = function(name) {
     this.name = name;
     this.letters = name.split('');
     this.balloons = [];
-    this.el = null;
-    this.hexcode = null;
     this.derpOn = false;
+    this.pattern = [3, 4, 3, 1, 2, 4];
     this.initialize();
 }
 
@@ -46,8 +45,9 @@ HappyBirthday.prototype.colorBalloons = function() {
 }
 
 HappyBirthday.prototype.floatBalloons = function() {
+    var pattern = this.pattern;
     this.balloons.forEach(function(balloon, index) {
-        balloon.floatUp(index);
+        balloon.floatUp(pattern[index]);
     })
 }
 
@@ -66,6 +66,8 @@ HappyBirthday.prototype.derpFace = function() {
 var Balloon = function(char, duration) {
   this.char = char;
   this.duration = duration;
+  this.el = null;
+  this.hexcode = null;
   this.createBalloon();
 }
 
@@ -90,8 +92,7 @@ Balloon.prototype.insertCharacter = function() {
     this.el.append(el);
 }
 
-Balloon.prototype.floatUp = function(index) {
-    var pattern = [3, 4, 3, 1, 2, 4];
-    var floatName = 'float' + pattern[index];
+Balloon.prototype.floatUp = function(pattern) {
+    var floatName = 'float' + pattern;
     this.el.addClass(floatName);
 }
