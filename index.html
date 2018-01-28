@@ -100,13 +100,9 @@ ANYWAYS; let us describe all the gifts shall we?
         $(this).removeClass('float-down');
         var el = $(this)[0];
         var top = getComputedStyle(el).top;
-        if (top == 'auto') {
-            $(this).css('top', '-85px');
-        } else {
-            top = parseInt(top);
-            top -= 50;
-            $(this).css('top', top);
-        }
+        top = parseInt(top);
+        top -= 50;
+        $(this).css('top', top);
         var self = this;
         setTimeout(function() {
             $(self).addClass('float-down');
